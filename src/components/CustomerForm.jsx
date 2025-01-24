@@ -169,7 +169,7 @@ const CustomerForm = () => {
                         {response}
                       </div>
                       <div className="text-sm text-emerald-600 mt-2">
-                        Thank you for participating!
+                        Show this code to the car wash attendant at any of our 10 locations to enjoy your free wash!
                       </div>
                       <div className="text-sm text-emerald-600 mt-4 pt-4 border-t border-emerald-100">
                         We've also sent this code to your phone via SMS for easy access at the wash.
