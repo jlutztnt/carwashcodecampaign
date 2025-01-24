@@ -128,6 +128,11 @@ const CustomerForm = () => {
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
+            <div className="text-center mb-8">
+              <h1 className="text-2xl font-bold text-indigo-600 mb-2">First Wash on Us!</h1>
+              <h2 className="text-xl text-gray-600">Discover Toot'n Totum Express Wash</h2>
+            </div>
+
             <div className="divide-y divide-gray-200">
               {response ? (
                 <div className="text-center py-4 px-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm">
