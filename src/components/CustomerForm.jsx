@@ -11,6 +11,7 @@ const CustomerForm = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
+  const [isExistingUser, setIsExistingUser] = useState(false);
 
   // Format name to proper case
   const formatName = (input) => {
@@ -77,6 +78,7 @@ const CustomerForm = () => {
     e.preventDefault();
     setError(null);
     setResponse(null);
+    setIsExistingUser(false);
     
     // Validate inputs
     if (!formData.first_name.trim() || !formData.last_name.trim()) {
@@ -89,7 +91,6 @@ const CustomerForm = () => {
       return;
     }
 
-    // Check consent before proceeding
     if (!consent) {
       setError('Please check the box to agree to receive communications and continue.');
       return;
@@ -111,13 +112,10 @@ const CustomerForm = () => {
         }
       );
       
-      // Handle the response based on the code value
       if (result.data.code) {
         setResponse(result.data.message);
-        setError(null);
       } else {
-        setResponse(null);
-        setError(true); // Just set to true since we're using the error state to trigger the display
+        setIsExistingUser(true);
       }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred. Please try again.');
@@ -131,7 +129,7 @@ const CustomerForm = () => {
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
-            {response || error ? (
+            {response || isExistingUser ? (
               <>
                 <div className="flex justify-center mb-6">
                   <img 
