@@ -150,6 +150,9 @@ const CustomerForm = () => {
                 <span className="text-indigo-600 font-semibold"> Toot'n Totum </span>
                 Express Wash
               </h2>
+              <p className="text-gray-600 mt-3 text-sm">
+                Enter your name and mobile number below, and we'll send you a code for a complimentary car wash at any of our locations.
+              </p>
             </div>
 
             <div className="divide-y divide-gray-200">
