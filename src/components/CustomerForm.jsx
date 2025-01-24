@@ -10,6 +10,7 @@ const CustomerForm = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   // Format name to proper case
   const formatName = (input) => {
@@ -85,6 +86,11 @@ const CustomerForm = () => {
 
     if (!validatePhone(formData.mobile_phone)) {
       setError('Please enter a valid 10-digit phone number');
+      return;
+    }
+
+    if (!consent) {
+      setError('Please agree to the terms and conditions');
       return;
     }
 
@@ -172,6 +178,21 @@ const CustomerForm = () => {
                         maxLength="14"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
                       />
+                    </div>
+
+                    <div className="flex items-start space-x-2 mt-4">
+                      <input
+                        type="checkbox"
+                        id="consent"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="mt-1"
+                      />
+                      <label htmlFor="consent" className="text-sm text-gray-600">
+                        I agree to receive marketing communications and SMS messages. By submitting this form, 
+                        I consent to receive promotional offers and updates. Message and data rates may apply. 
+                        Message frequency varies. Reply HELP for help or STOP to cancel at any time.
+                      </label>
                     </div>
 
                     {error && (
