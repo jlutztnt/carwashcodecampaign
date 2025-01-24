@@ -130,28 +130,15 @@ const CustomerForm = () => {
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
-            <div className="flex justify-center mb-6">
-              <img 
-                src="https://tntcloudblob.blob.core.windows.net/logos/Express%20Car%20Wash.png" 
-                alt="Toot'n Totum Express Wash" 
-                className="w-[200px] h-auto"
-              />
-            </div>
-
-            <div className="text-center mb-4">
-              <div className="inline-block">
-                <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-3">
-                  Discover Toot'n Totum Express Wash
-                </h1>
-                <div className="h-1 w-full bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full"></div>
-              </div>
-              <p className="text-gray-600 mt-3 text-sm">
-                Enter your name and mobile number below, and we'll send you a code for a complimentary car wash at any of our locations.
-              </p>
-            </div>
-
-            <div className="divide-y divide-gray-200">
-              {response || error ? (
+            {response || error ? (
+              <>
+                <div className="flex justify-center mb-6">
+                  <img 
+                    src="https://tntcloudblob.blob.core.windows.net/logos/TnT%2075%20200x200%20Circle.png" 
+                    alt="Toot'n Totum" 
+                    className="w-[100px] h-auto"
+                  />
+                </div>
                 <div className={`text-center py-4 px-6 ${
                   response 
                     ? 'bg-gradient-to-r from-green-50 to-emerald-50' 
@@ -188,76 +175,99 @@ const CustomerForm = () => {
                     </>
                   )}
                 </div>
-              ) : (
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">First Name</label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        value={formData.first_name}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Last Name</label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        value={formData.last_name}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Mobile Phone</label>
-                      <input
-                        type="tel"
-                        name="mobile_phone"
-                        value={formData.mobile_phone}
-                        onChange={handleChange}
-                        placeholder="(XXX)-XXX-XXXX"
-                        maxLength="14"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                      />
-                    </div>
-
-                    <div className="flex items-start space-x-2 mt-4">
-                      <input
-                        type="checkbox"
-                        id="consent"
-                        checked={consent}
-                        onChange={(e) => setConsent(e.target.checked)}
-                        className="mt-1"
-                      />
-                      <label htmlFor="consent" className="text-sm text-gray-600">
-                        I agree to receive marketing communications and SMS messages. By submitting this form, 
-                        I consent to receive promotional offers and updates. Message and data rates may apply. 
-                        Message frequency varies. Reply HELP for help or STOP to cancel at any time.
-                      </label>
-                    </div>
-
-                    {error && (
-                      <div className="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-md">
-                        {error}
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                    >
-                      {loading ? 'Submitting...' : 'Submit'}
-                    </button>
-                  </form>
+              </>
+            ) : (
+              <>
+                <div className="flex justify-center mb-6">
+                  <img 
+                    src="https://tntcloudblob.blob.core.windows.net/logos/Express%20Car%20Wash.png" 
+                    alt="Toot'n Totum Express Wash" 
+                    className="w-[200px] h-auto"
+                  />
                 </div>
-              )}
-            </div>
+                <div className="text-center mb-4">
+                  <div className="inline-block">
+                    <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-3">
+                      Discover Toot'n Totum Express Wash
+                    </h1>
+                    <div className="h-1 w-full bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full"></div>
+                  </div>
+                  <p className="text-gray-600 mt-3 text-sm">
+                    Enter your name and mobile number below, and we'll send you a code for a complimentary car wash at any of our locations.
+                  </p>
+                </div>
+
+                <div className="divide-y divide-gray-200">
+                  <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">First Name</label>
+                        <input
+                          type="text"
+                          name="first_name"
+                          value={formData.first_name}
+                          onChange={handleChange}
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input
+                          type="text"
+                          name="last_name"
+                          value={formData.last_name}
+                          onChange={handleChange}
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">Mobile Phone</label>
+                        <input
+                          type="tel"
+                          name="mobile_phone"
+                          value={formData.mobile_phone}
+                          onChange={handleChange}
+                          placeholder="(XXX)-XXX-XXXX"
+                          maxLength="14"
+                          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                        />
+                      </div>
+
+                      <div className="flex items-start space-x-2 mt-4">
+                        <input
+                          type="checkbox"
+                          id="consent"
+                          checked={consent}
+                          onChange={(e) => setConsent(e.target.checked)}
+                          className="mt-1"
+                        />
+                        <label htmlFor="consent" className="text-sm text-gray-600">
+                          I agree to receive marketing communications and SMS messages. By submitting this form, 
+                          I consent to receive promotional offers and updates. Message and data rates may apply. 
+                          Message frequency varies. Reply HELP for help or STOP to cancel at any time.
+                        </label>
+                      </div>
+
+                      {error && (
+                        <div className="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-md">
+                          {error}
+                        </div>
+                      )}
+
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        {loading ? 'Submitting...' : 'Submit'}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
