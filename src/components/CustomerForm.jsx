@@ -154,7 +154,11 @@ const CustomerForm = () => {
 
             <div className="divide-y divide-gray-200">
               {response || error ? (
-                <div className={`text-center py-4 px-6 ${response ? 'bg-gradient-to-r from-green-50 to-emerald-50' : 'bg-gradient-to-r from-blue-50 to-indigo-50'} rounded-lg shadow-sm`}>
+                <div className={`text-center py-4 px-6 ${
+                  response 
+                    ? 'bg-gradient-to-r from-green-50 to-emerald-50' 
+                    : 'bg-gradient-to-r from-rose-50 to-red-50'
+                } rounded-lg shadow-sm`}>
                   {response ? (
                     <>
                       <div className="text-2xl mb-2">🎉 Congratulations! 🎉</div>
@@ -171,13 +175,13 @@ const CustomerForm = () => {
                   ) : (
                     <>
                       <div className="text-2xl mb-2">👋 Welcome Back! 👋</div>
-                      <div className="text-lg font-medium text-indigo-600 mb-3">
+                      <div className="text-lg font-medium text-rose-600 mb-3">
                         It looks like you've already received a free wash code within the last 6 months.
                       </div>
-                      <div className="text-md text-indigo-700 p-3 bg-white rounded-md shadow-sm">
+                      <div className="text-md text-rose-700 p-3 bg-white rounded-md shadow-sm">
                         We hope you enjoyed your free wash. Visit us for a wash anytime – we'd love to see you again!
                       </div>
-                      <div className="text-sm text-indigo-600 mt-2">
+                      <div className="text-sm text-rose-600 mt-2">
                         Thank you for being a valued customer!
                       </div>
                     </>
