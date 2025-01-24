@@ -137,8 +137,17 @@ const CustomerForm = () => {
             </div>
 
             <div className="text-center mb-8">
-              <h1 className="text-2xl font-bold text-indigo-600 mb-2">First Wash on Us!</h1>
-              <h2 className="text-xl text-gray-600">Discover Toot'n Totum Express Wash</h2>
+              <div className="inline-block">
+                <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-3">
+                  First Wash on Us!
+                </h1>
+                <div className="h-1 w-full bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full"></div>
+              </div>
+              <h2 className="text-xl text-gray-600 mt-4 font-medium">
+                Discover 
+                <span className="text-indigo-600 font-semibold"> Toot'n Totum </span>
+                Express Wash
+              </h2>
             </div>
 
             <div className="divide-y divide-gray-200">
