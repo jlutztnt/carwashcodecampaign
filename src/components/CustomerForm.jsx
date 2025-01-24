@@ -101,8 +101,8 @@ const CustomerForm = () => {
       const result = await axios.post(
         'https://prod-181.westus.logic.azure.com:443/workflows/106f4f646ca7411aa86f9f099086eaeb/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fy8Sgl8WwG9bVqjUOXEKUVQ1NC_g6bWG1V_xlDbWvB4',
         {
-          first_name: formData.first_name.toUpperCase(),
-          last_name: formData.last_name.toUpperCase(),
+          first_name: formatName(formData.first_name),
+          last_name: formatName(formData.last_name),
           mobile_phone: formatPhoneForSubmission(formData.mobile_phone)
         },
         {
