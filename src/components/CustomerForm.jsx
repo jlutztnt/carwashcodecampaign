@@ -114,7 +114,12 @@ const CustomerForm = () => {
       if (result.data.code) {
         setResponse(result.data.message);
       } else {
-        setError('Only one code can be requested every six months.');
+        setError(
+          <div className="text-center">
+            <p className="font-medium mb-2">It looks like you've already received a free wash code within the last 6 months.</p>
+            <p>We hope you enjoyed your free wash. Visit us for a wash anytime – we'd love to see you again!</p>
+          </div>
+        );
       }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred. Please try again.');
