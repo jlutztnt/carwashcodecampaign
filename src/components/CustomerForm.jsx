@@ -138,7 +138,7 @@ const CustomerForm = () => {
               />
             </div>
 
-            <div className="text-center mb-8">
+            <div className="text-center mb-4">
               <div className="inline-block">
                 <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 mb-3">
                   First Wash on Us!
