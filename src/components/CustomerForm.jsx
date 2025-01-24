@@ -171,6 +171,9 @@ const CustomerForm = () => {
                       <div className="text-sm text-emerald-600 mt-2">
                         Thank you for participating!
                       </div>
+                      <div className="text-sm text-emerald-600 mt-4 pt-4 border-t border-emerald-100">
+                        We've also sent this code to your phone via SMS for easy access at the wash.
+                      </div>
                     </>
                   ) : (
                     <>
