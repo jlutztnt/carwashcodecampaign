@@ -11,17 +11,47 @@ const CustomerForm = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Format phone number for display
+  const formatPhoneForDisplay = (input) => {
+    // Strip all non-digits
+    const digits = input.replace(/\D/g, '');
+    
+    if (digits.length <= 3) {
+      return digits;
+    } else if (digits.length <= 6) {
+      return `(${digits.slice(0,3)})-${digits.slice(3)}`;
+    } else {
+      return `(${digits.slice(0,3)})-${digits.slice(3,6)}-${digits.slice(6,10)}`;
+    }
+  };
+
+  // Format phone number for API submission
+  const formatPhoneForSubmission = (input) => {
+    const digits = input.replace(/\D/g, '');
+    return digits.length === 10 ? `+1${digits}` : '';
+  };
+
   const validatePhone = (phone) => {
-    const phoneRegex = /^\+1\d{10}$/;
-    return phoneRegex.test(phone);
+    const digitsOnly = phone.replace(/\D/g, '');
+    return digitsOnly.length === 10;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    if (name === 'mobile_phone') {
+      // Only allow digits and format them
+      const formattedValue = formatPhoneForDisplay(value);
+      setFormData(prev => ({
+        ...prev,
+        [name]: formattedValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
     setError(null);
   };
 
@@ -37,7 +67,7 @@ const CustomerForm = () => {
     }
 
     if (!validatePhone(formData.mobile_phone)) {
-      setError('Phone number must be in format: +1XXXXXXXXXX');
+      setError('Please enter a valid 10-digit phone number');
       return;
     }
 
@@ -48,7 +78,7 @@ const CustomerForm = () => {
         {
           first_name: formData.first_name.toUpperCase(),
           last_name: formData.last_name.toUpperCase(),
-          mobile_phone: formData.mobile_phone
+          mobile_phone: formatPhoneForSubmission(formData.mobile_phone)
         },
         {
           headers: {
@@ -102,7 +132,8 @@ const CustomerForm = () => {
                       name="mobile_phone"
                       value={formData.mobile_phone}
                       onChange={handleChange}
-                      placeholder="+1XXXXXXXXXX"
+                      placeholder="(XXX)-XXX-XXXX"
+                      maxLength="14"
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
                     />
                   </div>
