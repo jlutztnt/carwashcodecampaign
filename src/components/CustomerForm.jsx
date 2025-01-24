@@ -113,13 +113,10 @@ const CustomerForm = () => {
       // Handle the response based on the code value
       if (result.data.code) {
         setResponse(result.data.message);
+        setError(null);
       } else {
-        setError(
-          <div className="text-center">
-            <p className="font-medium mb-2">It looks like you've already received a free wash code within the last 6 months.</p>
-            <p>We hope you enjoyed your free wash. Visit us for a wash anytime – we'd love to see you again!</p>
-          </div>
-        );
+        setResponse(null);
+        setError(true); // Just set to true since we're using the error state to trigger the display
       }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred. Please try again.');
@@ -156,18 +153,35 @@ const CustomerForm = () => {
             </div>
 
             <div className="divide-y divide-gray-200">
-              {response ? (
-                <div className="text-center py-4 px-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm">
-                  <div className="text-2xl mb-2">🎉 Congratulations! 🎉</div>
-                  <div className="text-lg font-medium text-emerald-600 mb-2">
-                    Here's your special code:
-                  </div>
-                  <div className="text-xl font-bold text-emerald-700 p-3 bg-white rounded-md shadow-sm">
-                    {response}
-                  </div>
-                  <div className="text-sm text-emerald-600 mt-2">
-                    Thank you for participating!
-                  </div>
+              {response || error ? (
+                <div className={`text-center py-4 px-6 ${response ? 'bg-gradient-to-r from-green-50 to-emerald-50' : 'bg-gradient-to-r from-blue-50 to-indigo-50'} rounded-lg shadow-sm`}>
+                  {response ? (
+                    <>
+                      <div className="text-2xl mb-2">🎉 Congratulations! 🎉</div>
+                      <div className="text-lg font-medium text-emerald-600 mb-2">
+                        Here's your special code:
+                      </div>
+                      <div className="text-xl font-bold text-emerald-700 p-3 bg-white rounded-md shadow-sm">
+                        {response}
+                      </div>
+                      <div className="text-sm text-emerald-600 mt-2">
+                        Thank you for participating!
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-2xl mb-2">👋 Welcome Back! 👋</div>
+                      <div className="text-lg font-medium text-indigo-600 mb-3">
+                        It looks like you've already received a free wash code within the last 6 months.
+                      </div>
+                      <div className="text-md text-indigo-700 p-3 bg-white rounded-md shadow-sm">
+                        We hope you enjoyed your free wash. Visit us for a wash anytime – we'd love to see you again!
+                      </div>
+                      <div className="text-sm text-indigo-600 mt-2">
+                        Thank you for being a valued customer!
+                      </div>
+                    </>
+                  )}
                 </div>
               ) : (
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
