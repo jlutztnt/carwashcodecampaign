@@ -11,6 +11,16 @@ const CustomerForm = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Format name to proper case
+  const formatName = (input) => {
+    if (!input) return '';
+    return input
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   // Format phone number for display
   const formatPhoneForDisplay = (input) => {
     // Strip all non-digits
@@ -42,6 +52,13 @@ const CustomerForm = () => {
     if (name === 'mobile_phone') {
       // Only allow digits and format them
       const formattedValue = formatPhoneForDisplay(value);
+      setFormData(prev => ({
+        ...prev,
+        [name]: formattedValue
+      }));
+    } else if (name === 'first_name' || name === 'last_name') {
+      // Format names in proper case
+      const formattedValue = formatName(value);
       setFormData(prev => ({
         ...prev,
         [name]: formattedValue
