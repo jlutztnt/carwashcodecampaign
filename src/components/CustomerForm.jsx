@@ -123,9 +123,8 @@ const CustomerForm = () => {
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
             <div className="divide-y divide-gray-200">
-              {/* Show celebration message when code is delivered */}
-              {response && (
-                <div className="text-center mb-8 py-4 px-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm">
+              {response ? (
+                <div className="text-center py-4 px-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm">
                   <div className="text-2xl mb-2">🎉 Congratulations! 🎉</div>
                   <div className="text-lg font-medium text-emerald-600 mb-2">
                     Here's your special code:
@@ -137,60 +136,60 @@ const CustomerForm = () => {
                     Thank you for participating!
                   </div>
                 </div>
-              )}
-
-              <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">First Name</label>
-                    <input
-                      type="text"
-                      name="first_name"
-                      value={formData.first_name}
-                      onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Last Name</label>
-                    <input
-                      type="text"
-                      name="last_name"
-                      value={formData.last_name}
-                      onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Mobile Phone</label>
-                    <input
-                      type="tel"
-                      name="mobile_phone"
-                      value={formData.mobile_phone}
-                      onChange={handleChange}
-                      placeholder="(XXX)-XXX-XXXX"
-                      maxLength="14"
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
-                    />
-                  </div>
-
-                  {error && (
-                    <div className="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-md">
-                      {error}
+              ) : (
+                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">First Name</label>
+                      <input
+                        type="text"
+                        name="first_name"
+                        value={formData.first_name}
+                        onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                      />
                     </div>
-                  )}
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Last Name</label>
+                      <input
+                        type="text"
+                        name="last_name"
+                        value={formData.last_name}
+                        onChange={handleChange}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Mobile Phone</label>
+                      <input
+                        type="tel"
+                        name="mobile_phone"
+                        value={formData.mobile_phone}
+                        onChange={handleChange}
+                        placeholder="(XXX)-XXX-XXXX"
+                        maxLength="14"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                      />
+                    </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  >
-                    {loading ? 'Submitting...' : 'Submit'}
-                  </button>
-                </form>
-              </div>
+                    {error && (
+                      <div className="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-md">
+                        {error}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                      {loading ? 'Submitting...' : 'Submit'}
+                    </button>
+                  </form>
+                </div>
+              )}
             </div>
           </div>
         </div>
