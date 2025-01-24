@@ -104,7 +104,12 @@ const CustomerForm = () => {
         }
       );
       
-      setResponse(result.data);
+      // Handle the response based on the code value
+      if (result.data.code) {
+        setResponse(result.data.message);
+      } else {
+        setError('Only one code can be requested every six months.');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred. Please try again.');
     } finally {
