@@ -123,6 +123,22 @@ const CustomerForm = () => {
         <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="max-w-md mx-auto">
             <div className="divide-y divide-gray-200">
+              {/* Show celebration message when code is delivered */}
+              {response && (
+                <div className="text-center mb-8 py-4 px-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-sm">
+                  <div className="text-2xl mb-2">🎉 Congratulations! 🎉</div>
+                  <div className="text-lg font-medium text-emerald-600 mb-2">
+                    Here's your special code:
+                  </div>
+                  <div className="text-xl font-bold text-emerald-700 p-3 bg-white rounded-md shadow-sm">
+                    {response}
+                  </div>
+                  <div className="text-sm text-emerald-600 mt-2">
+                    Thank you for participating!
+                  </div>
+                </div>
+              )}
+
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
@@ -161,14 +177,8 @@ const CustomerForm = () => {
                   </div>
 
                   {error && (
-                    <div className="text-red-500 text-sm mt-2">
+                    <div className="text-red-500 text-sm mt-2 p-3 bg-red-50 rounded-md">
                       {error}
-                    </div>
-                  )}
-
-                  {response && (
-                    <div className="text-green-500 text-sm mt-2">
-                      {response}
                     </div>
                   )}
 
