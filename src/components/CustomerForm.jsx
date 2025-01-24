@@ -89,8 +89,9 @@ const CustomerForm = () => {
       return;
     }
 
+    // If consent is not checked, show error message
     if (!consent) {
-      setError('Please agree to the terms and conditions');
+      setError('Please agree to receive marketing communications and SMS messages to continue.');
       return;
     }
 
