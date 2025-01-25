@@ -147,16 +147,13 @@ const CustomerForm = () => {
                     <>
                       <div className="text-2xl mb-2">🎉 Congratulations! 🎉</div>
                       <div className="text-lg font-medium text-emerald-600 mb-2">
-                        Here's your special code:
+                        Your free car wash code is on its way!
                       </div>
-                      <div className="text-xl font-bold text-emerald-700 p-3 bg-white rounded-md shadow-sm">
-                        {response}
+                      <div className="text-md text-emerald-700 p-3 bg-white rounded-md shadow-sm">
+                        Check your text messages for your unique code. Show this code to the car wash attendant at any of our 10 locations to enjoy your free wash!
                       </div>
-                      <div className="text-sm text-emerald-600 mt-2">
-                        Show this code to the car wash attendant at any of our 10 locations to enjoy your free wash!
-                      </div>
-                      <div className="text-sm text-emerald-600 mt-4 pt-4 border-t border-emerald-100">
-                        We've also sent this code to your phone via SMS for easy access at the wash.
+                      <div className="text-sm text-emerald-600 mt-4">
+                        Haven't received your code? Please allow a few minutes for delivery.
                       </div>
                     </>
                   ) : (
