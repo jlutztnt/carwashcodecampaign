@@ -1,13 +1,29 @@
-# Customer Form Application
+# Toot'n Totum Express Wash Code Campaign
 
-A mobile-first web application for collecting customer information.
+Production build v1.0.0
+
+A web application for Toot'n Totum Express Wash customers to receive complimentary car wash codes via SMS.
 
 ## Features
-- Mobile-first responsive design
-- Real-time form validation
-- Phone number format validation
-- Secure API integration
-- Error handling and loading states
+- Name and phone number validation
+- SMS code delivery
+- Proper case name formatting
+- Phone number formatting
+- Marketing consent management
+- Duplicate submission prevention
+- Responsive design
+- Rate limiting (30-second cooldown between submissions)
+- Session timeout (5-minute inactivity reset)
+
+## Technical Stack
+- React
+- Vite
+- Tailwind CSS
+- Axios for API calls
+
+## Deployment
+Deployed on Railway.app
+Production URL: https://carwashcodecampaign-production.up.railway.app
 
 ## Prerequisites
 - Node.js (v14 or higher)

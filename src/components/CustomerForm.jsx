@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const CustomerForm = () => {
@@ -12,6 +12,10 @@ const CustomerForm = () => {
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
   const [isExistingUser, setIsExistingUser] = useState(false);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState(null);
+  const SUBMISSION_COOLDOWN = 30000; // 30 seconds between submissions
+  const SESSION_TIMEOUT = 300000; // 5 minutes
+  const [sessionTimer, setSessionTimer] = useState(null);
 
   // Format name to proper case
   const formatName = (input) => {
@@ -76,6 +80,13 @@ const CustomerForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if enough time has passed since last submission
+    if (lastSubmissionTime && Date.now() - lastSubmissionTime < SUBMISSION_COOLDOWN) {
+      setError('Please wait a moment before trying again.');
+      return;
+    }
+
     setError(null);
     setResponse(null);
     setIsExistingUser(false);
@@ -97,6 +108,7 @@ const CustomerForm = () => {
     }
 
     try {
+      setLastSubmissionTime(Date.now());
       setLoading(true);
       const result = await axios.post(
         'https://prod-181.westus.logic.azure.com:443/workflows/106f4f646ca7411aa86f9f099086eaeb/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fy8Sgl8WwG9bVqjUOXEKUVQ1NC_g6bWG1V_xlDbWvB4',
@@ -123,6 +135,40 @@ const CustomerForm = () => {
       setLoading(false);
     }
   };
+
+  // Reset session timer on any user activity
+  const resetSessionTimer = () => {
+    if (sessionTimer) clearTimeout(sessionTimer);
+    const newTimer = setTimeout(() => {
+      setFormData({
+        first_name: '',
+        last_name: '',
+        mobile_phone: ''
+      });
+      setConsent(false);
+      setError('Session expired. Please try again.');
+    }, SESSION_TIMEOUT);
+    setSessionTimer(newTimer);
+  };
+
+  // Add cleanup
+  useEffect(() => {
+    return () => {
+      if (sessionTimer) clearTimeout(sessionTimer);
+    };
+  }, [sessionTimer]);
+
+  // Add event listeners for user activity
+  useEffect(() => {
+    const handleActivity = () => resetSessionTimer();
+    document.addEventListener('mousemove', handleActivity);
+    document.addEventListener('keypress', handleActivity);
+
+    return () => {
+      document.removeEventListener('mousemove', handleActivity);
+      document.removeEventListener('keypress', handleActivity);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
