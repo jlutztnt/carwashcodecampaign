@@ -181,7 +181,7 @@ const CustomerForm = () => {
                   <img 
                     src="https://tntcloudblob.blob.core.windows.net/logos/TnT%2075%20200x200%20Circle.png" 
                     alt="Toot'n Totum" 
-                    className="w-[100px] h-auto"
+                    className="w-[200px] h-auto"
                   />
                 </div>
                 <div className={`text-center py-4 px-6 ${
